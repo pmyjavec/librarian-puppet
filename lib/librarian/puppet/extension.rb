@@ -24,10 +24,11 @@ module Librarian
           when String
             Librarian::Puppet::Requirement.new(arg).gem_requirement
           else
-            # Gem::Requirement, do nothing
-            arg
+            # Gem::Requirement, convert to string (ie. =1.0) so we can concat later
+            # Gem::Requirements can not be concatenated
+            arg.requirements.map{|x,y| "#{x}#{y}"}
           end
-        end
+        end.flatten
       end
     end
   end
