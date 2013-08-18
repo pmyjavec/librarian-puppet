@@ -216,16 +216,4 @@ module Librarian
     end
   end
 
-  class Resolver
-    # ensure we don't return nil, if manifests is nil we return a resolution that is not valid
-    def resolve(spec, partial_manifests = [])
-      manifests = implementation(spec).resolve(partial_manifests)
-      if manifests
-        enforce_consistency!(spec.dependencies, manifests)
-        manifests = sort(manifests)
-      end
-      Resolution.new(spec.dependencies, manifests)
-    end
-  end
-
 end
