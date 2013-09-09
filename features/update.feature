@@ -99,6 +99,6 @@ Feature: cli/update
     """
     When I run `librarian-puppet update --verbose`
     Then the exit status should be 0
-    And the file "Puppetfile.lock" should contain "maestrodev/test (1.0.10)"
+    And the file "Puppetfile.lock" should match /maestrodev.test \(1\.0\.[1-9][0-9]\)/
     And the file "modules/test/Modulefile" should contain "name 'maestrodev-test'"
-    And the file "modules/test/Modulefile" should contain "version '1.0.10'"
+    And the file "modules/test/Modulefile" should match /version '1\.0\.[1-9][0-9]'/
