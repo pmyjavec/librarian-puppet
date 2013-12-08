@@ -7,6 +7,14 @@ module Librarian
   module Puppet
     class Cli < Librarian::Cli
 
+      class_option :debug, :type => :boolean
+
+      def initialize(*)
+        super
+
+        environment.ui.instance_variable_set(:@debug, true) if options[:debug]
+      end
+
       module Particularity
         def root_module
           Puppet
